@@ -1,0 +1,60 @@
+.wrapper-details {
+  max-height: 100vh;
+  overflow-y: auto;
+  .list-card {
+    display: flex;
+    flex-direction: row;
+    max-width: 390px;
+    margin: 5px;
+    margin-left: 25px;
+  }
+  .list-image-container {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 0;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-basis: 115px;
+    margin: 10px;
+    .list-image {
+      display: inline-block;
+      max-width: 120px;
+      max-height: 120px;
+      object-fit: contain;
+    }
+  }
+
+  .mat-toolbar-row {
+    padding-left: 25px;
+  }
+}
+
+.images-container {
+  margin-right: 10px;
+  .property-img {
+    height: 120px;
+    width: 125px;
+    margin: 0 auto;
+  }
+}
+
+.title-container {
+  padding: 0;
+  div {
+    padding: 0;
+  }
+}
+
+.overview {
+  div {
+    padding: 0;
+  }
+}
+
+.section {
+  padding-top: 20px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

@@ -1,0 +1,81 @@
+<div class="wrapper-details">
+  <div class="row">
+    <div class="col-md-12">
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+              <span *ngIf="!selectedItem.listID">{{ listItems.agentInfo.firstname }} {{ listItems.agentInfo.lastname }} | {{ listItems.agentInfo.company }}</span>
+              <span *ngIf="selectedItem.listID" (click)="back()" class="cursor-pointer">Back to results</span>
+            </mat-toolbar-row>
+          </mat-toolbar>    
+    </div>
+  </div>
+  <ng-container *ngIf="!selectedItem.listID">
+    <div class="row" *ngFor="let item of listItems.records">
+      <div class="col-md-12">
+          <mat-card class="list-card">
+              <mat-card-header>
+                <mat-card-title>{{ item.name }}</mat-card-title>
+                <mat-card-subtitle>
+                    {{ item.streetAddress }}, {{ item.city }}
+                    <p>{{ item.floorplans[0].type }} - {{ item.floorplans[0].price | currency: 'USD' : symbol: '1.0-0' }}</p>
+                    <p>{{ item.highValueAmenities.length }} {{ item.highValueAmenities.length > 1 ? 'High value amenities' : 'High value amenity' }}</p>
+                  </mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+              </mat-card-content>
+              <div class="list-image-container">
+                  <img mat-card-image [src]="item.photo" class="list-image">
+              </div>
+            </mat-card>
+      </div>
+    </div>
+  </ng-container>
+  <div *ngIf="selectedItem.listID" class="container" style="padding-right: 0;">
+    <div class="row title-container">
+      <div class="col-md-12">
+        <mat-toolbar color="secondary">
+          <mat-toolbar-row>
+            {{ selectedItem.name }}
+          </mat-toolbar-row>
+          <mat-toolbar-row>
+            {{ selectedItem.city }}
+          </mat-toolbar-row>
+        </mat-toolbar>
+      </div>
+    </div>
+    <div class="row images-container">
+      <ng-container *ngFor="let image of selectedItem.photos; let i = index">
+        <div class="col-md-4" *ngIf="i < 3">
+          <img [src]="image" class="property-img">
+        </div>
+      </ng-container>
+    </div>
+    <div class="row overview">
+      <div class="col-md-12">
+        <mat-toolbar color="secondary">
+          <mat-toolbar-row>
+            Overview
+          </mat-toolbar-row>
+        </mat-toolbar>
+      </div>
+    </div>
+    <div class="row section">
+      <div class="col-md-12">
+        <strong>Property Amenities: </strong> <span *ngFor="let amenity of selectedItem.propertyAmenities">{{ amenity }}, </span>
+      </div>
+    </div>
+    <hr>
+    <div class="row section">
+     <div class="col-md-12">
+      <p>{{ selectedItem.appFee | currency: 'USD' : symbol: '1.0-0' }} App fee.</p>
+       <p>{{ selectedItem.adminFee | currency: 'USD' : symbol: '1.0-0' }} Admin fee.</p>
+     </div>
+    </div>
+    <hr>
+    <div class="row section">
+      <div class="col-md-12">
+        <p>Built in {{ selectedItem.yearBuilt }}</p>
+      </div>
+    </div>
+  </div>
+</div>
